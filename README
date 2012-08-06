@@ -1,0 +1,62 @@
+这个是ads管理的项目，请在Issues中查看
+
+
+一、优先级类：用于表示issue的紧要程度，包括
+Add P0-优先级极高，请停下手头所有事情，即刻开始解决该问题
+Add P1-优先级较高，希望可以优先安排，如没有更高的优先级，即刻开始解决该问题
+Add P2-优先级一般，自行安排
+Add P3-优先级较低，可以安排在下一个mileStone
+Add P4-优先级最低，有空时候完成即可
+
+二、任务性质类：用于表示任务内容，包括
+Add cBug-定义为bug，影响功能正常运行
+Add cFeature-定义为新功能
+Add cChore-定义为杂项，重构，支持，讨论在属于此类
+Add cCustomerService-定义为客服反馈，需要进一步的定义其优先级和类别
+Add cFeedback-定义为反馈，从BD来的信息，需要进一步的定义其优先级和分类
+
+三、处理状态类：用于表示当前任务的处理状态，包括
+Add sNew-新建状态，需要分配该issue给某人
+Add sAssigned-被分配状态，已经分配给某人，需要该人进行确认
+Add sAccepted-被接受状态，被指配的人接受了该issue
+Add sFixed-被修复状态，已经完成该issue
+Add sVerified-被确认状态，相关人员已经完成确认
+Add sClosed-被关闭状态，该issue完成
+
+
+
+随着技术人员的增多和业务系统的增长，原来自由的Unit test和Code Review流程逐渐无法满足我们的需求，所以在此初步规范下Unit test和Code Review的要求，从本周开始进行试运行。如果对此有疑问和意见，可以随时讨论，不断改进。
+此邮件内容也放在wiki上：http://git.fm/ufp-xp/AdsEngDocs/wiki 
+
+目标：让开发流程更加顺畅，代码质量逐步提高，减少由代码bug造成的线上故障。
+
+
+开发要求：
+1、每个任务在github上有对应的Issue记录，优先级和分类参见：http://git.fm/ufp-xp/AdsEngDocs/blob/master/README 
+2、每个任务都有简单Design Doc，可以写在Issue里，也可以写在代码注释中。
+3、避免在展示层（View/Controller）加入业务逻辑代码，逻辑都在Service/Logic层完成。
+4、代码规范参见：http://git.fm/umeng/uhg/wiki/Coding-style 
+
+Unit Test要求：
+1、目前要求ads的UnitTest主要集中在Service/Logic层：
+     a) 新功能Method覆盖率为100%。
+     b) 新逻辑的测试覆盖率为100%。
+     c) Unittest必需可以顺利运行通过。
+2、测试代码在提交代码时一起进行Review；
+3、后续考虑进行peer test（由其他人确认unittest是可以跑通的），以及daily build。
+4、脚本类代码暂不做要求。
+
+CodeReview流程：
+1、在github上发起PullRequest，同时@Reviwer；对一些小需求可以自己作为reviewer，但要自己承担责任。
+2、通过Reviewer需要在规定时间内，
+     a) 小功能需要在24小时内完成，大功能要在48小时内完成。特殊情况下可以找其他人作为reviewer。
+     b) Reviewer可以代码Review、comment、Merge操作。
+     c) 此情形下不能自己通过PullRequest。
+3、代码merge进Master分支后，通知OP人员进行上线操作。
+4、Pull request的通过者对代码造成的bug承担部分责任。
+
+Review组划分：
+交换：zhanyinan、jianglei
+UFP：chenmosha、yanshuyuan
+adNetwork：wanghaiyun、jianglei
+我做为所有项目Review的backup，另外不定期我们也会用投影仪做全组Review。
